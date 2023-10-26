@@ -1,15 +1,13 @@
 # compass
 
-A new Flutter plugin project.
+A Flutter compass. The heading varies from 0-360, 0 being north.
 
-## Getting Started
+## Usage
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+To use this plugin, add `compass_plus` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/). For example:
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```yaml
+dependencies:
+  compass_plus: ^0.0.2
+```
 
