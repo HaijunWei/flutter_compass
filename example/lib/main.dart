@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:compass/compass.dart';
+import 'package:compass_plus/compass_plus.dart';
 
 void main() {
   runApp(const MyApp());

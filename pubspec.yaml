@@ -1,7 +1,7 @@
-name: compass
+name: compass_plus
 description: Get device heading.
 version: 0.0.1
-homepage:
+homepage: https://github.com/HaijunWei/flutter_compass.git
 
 environment:
   sdk: '>=3.1.5 <4.0.0'

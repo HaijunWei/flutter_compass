@@ -41,7 +41,7 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.17.2"
-  compass:
+  compass_plus:
     dependency: "direct main"
     description:
       path: ".."
@@ -153,14 +153,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.0"
-  plugin_platform_interface:
-    dependency: transitive
-    description:
-      name: plugin_platform_interface
-      sha256: da3fdfeccc4d4ff2da8f8c556704c08f912542c5fb3cf2233ed75372384a034d
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.1.6"
   process:
     dependency: transitive
     description:
