@@ -3,8 +3,8 @@
 # Run `pod lib lint compass.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'compass'
-  s.version          = '0.0.1'
+  s.name             = 'compass_plus'
+  s.version          = '0.0.3'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
 A new Flutter plugin project.
