@@ -16,7 +16,7 @@ class CompassPlugin: FlutterPlugin, StreamHandler {
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
-  private lateinit var channel : EventChannel
+  private var channel: EventChannel? = null
   private var context: Context? = null
   private var gravitySensor: Sensor? = null
   private var magneticFieldSensor: Sensor? = null
@@ -30,18 +30,24 @@ class CompassPlugin: FlutterPlugin, StreamHandler {
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     context = flutterPluginBinding.applicationContext
     initListener()
-    val channel = EventChannel(flutterPluginBinding.binaryMessenger, "haijunwei/compass")
-    channel.setStreamHandler(this)
+    channel = EventChannel(flutterPluginBinding.binaryMessenger, "haijunwei/compass")
+    channel?.setStreamHandler(this)
   }
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-    channel.setStreamHandler(null)
+    unregisterListener()
+    channel?.setStreamHandler(null)
   }
 
   private fun initListener() {
     sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     gravitySensor = sensorManager?.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     magneticFieldSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+  }
+
+  private fun unregisterListener() {
+    sensorManager?.unregisterListener(sensorEventListener, gravitySensor)
+    sensorManager?.unregisterListener(sensorEventListener, magneticFieldSensor)
   }
 
   override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
@@ -51,15 +57,13 @@ class CompassPlugin: FlutterPlugin, StreamHandler {
   }
 
   override fun onCancel(arguments: Any?) {
-    sensorManager?.unregisterListener(sensorEventListener, gravitySensor)
-    sensorManager?.unregisterListener(sensorEventListener, magneticFieldSensor)
+    unregisterListener()
   }
 
   private fun createSensorEventListener(events: EventChannel.EventSink): SensorEventListener {
     return object : SensorEventListener {
       override fun onSensorChanged(event: SensorEvent) {
         if (lastAccuracySensorStatus === SensorManager.SENSOR_STATUS_UNRELIABLE) {
-//          Log.d(TAG, "Compass sensor is unreliable, device calibration is needed.")
           // Update the heading, even if the sensor is unreliable.
           // This makes it possible to use a different indicator for the unreliable case,
           // instead of just changing the RenderMode to NORMAL.

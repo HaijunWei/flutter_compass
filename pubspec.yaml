@@ -1,6 +1,6 @@
 name: compass_plus
 description: A Flutter compass. The heading varies from 0-360, 0 being north.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/HaijunWei/flutter_compass.git
 
 environment:

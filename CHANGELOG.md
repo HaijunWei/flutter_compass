@@ -9,3 +9,7 @@
 ## 0.0.3
 
 * Fixed iOS bug.
+
+## 0.0.4
+
+* Fixed Android bug.
