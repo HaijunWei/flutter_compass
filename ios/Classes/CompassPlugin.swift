@@ -11,6 +11,8 @@ public class CompassPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, CLLoc
         locationManager = CLLocationManager()
         super.init()
         channel.setStreamHandler(self)
+        locationManager.distanceFilter = 100
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
     }
     
@@ -32,6 +34,6 @@ public class CompassPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, CLLoc
     }
     
     public func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        eventSink?(newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading)
+        eventSink?(newHeading.magneticHeading)
     }
 }

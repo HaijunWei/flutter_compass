@@ -13,3 +13,7 @@
 ## 0.0.4
 
 * Fixed Android bug.
+
+## 0.0.5
+
+* Fixed Android bug.
