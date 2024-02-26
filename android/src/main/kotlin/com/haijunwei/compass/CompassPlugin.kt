@@ -5,6 +5,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.util.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.EventChannel.StreamHandler
@@ -51,8 +52,8 @@ class CompassPlugin: FlutterPlugin, StreamHandler {
   private fun createSensorEventListener(events: EventChannel.EventSink): SensorEventListener {
     return object : SensorEventListener {
       override fun onSensorChanged(event: SensorEvent) {
-        val direction = event.values[0] * -1.0f
-        notifyCompassChangeListeners((direction + 720) % 360)
+        val direction = event.values[0]
+        notifyCompassChangeListeners(direction)
       }
 
       override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
